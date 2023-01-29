@@ -28,12 +28,15 @@ $("footer").load("./common/footer.html")
 
 // Highlight & Deactivate current link
 const currentPage = getCurrentPath()
+const iMsec = 200
+let iCount = iMsec
 const hasLink = setInterval(() => {
-    if (header.children.length && (linkDeactivator(header) || REDIRECT_EXCEPTIONS.includes(currentPage))) {
+    if ((header.children.length && (linkDeactivator(header) || REDIRECT_EXCEPTIONS.includes(currentPage))) || iCount > iMsec * 10) {
         initPageFunctions()
         clearInterval(hasLink)
     }
-}, 200)
+    iCount += iMsec
+}, iMsec)
 
 
 // Initiate Page Options

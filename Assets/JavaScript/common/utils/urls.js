@@ -2,6 +2,9 @@
 // Get current page link
 export const getCurrentPath = () => {
     let path = window.location.pathname
+    if (path == "/") {
+        return path
+    }
     return path.startsWith("/") ? path.slice(1) : path
 }
 
@@ -10,6 +13,7 @@ export const C_ACTIVE = "active"
 export const linkDeactivator = (element) => {
     let currentPath = getCurrentPath().split("-").join(" ").replace(".html", "")
     let deactivated = false
+    const HOMEPAGES = ["/", "index"]
     const EXCEPTIONS = ["contact", "manage", "locate"]
     const authNavLinks = {
         "manage bunks": "ev bunk details",
@@ -21,6 +25,7 @@ export const linkDeactivator = (element) => {
     element.querySelectorAll("a.link").forEach((link) => {
         let pageLink = link.innerHTML.toLowerCase()
         if ((isLocateCharger === false || isLocateCharger && hasFilter === false) && pageLink == currentPath
+            || HOMEPAGES.indexOf(currentPath) >= 0 && pageLink == "home"
             || EXCEPTIONS[0] == currentPath && pageLink.startsWith(EXCEPTIONS[0])
             || element.classList.contains(EXCEPTIONS[1]) &&
             (authNavLinks[currentPath] == pageLink && isLocateCharger === false || authNavLinks[currentPath] == pageLink && isLocateCharger && hasFilter)) {
@@ -72,7 +77,7 @@ export const getParam = (key, onlyValue = true) => {
 }
 
 // Redirect to path with/without search queries
-export const HOME = "home.html"
+export const HOME = "index.html"
 export const redirect = (to, sQuery = "") => {
     if (to == null) {
         to = HOME
