@@ -130,7 +130,7 @@ body {
 @media (max-width: 991px) {
     .about-container .intro-content {
         grid-template-columns: 100%;
-        grid-template-rows: 100%;
+        grid-template-rows: max-content;
         gap: 10em;
         padding: 8em 0;
     }
