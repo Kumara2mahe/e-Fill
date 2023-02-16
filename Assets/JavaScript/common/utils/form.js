@@ -10,7 +10,7 @@ export const searchBoxSubmit = (e, login = true) => {
     e.preventDefault()
     const currentPage = getCurrentPath()
     if (currentPage != REDIRECT_EXCEPTIONS[4]) {
-        let { data } = collectFormData(e.target, false, false)
+        let { data } = collectFormData(e.target, false, false, "", true)
         if (data) {
             let goLink = REDIRECT_EXCEPTIONS[4]
             if (login) {
@@ -23,7 +23,7 @@ export const searchBoxSubmit = (e, login = true) => {
 }
 
 // Collect Form data
-export const collectFormData = (form, hasSelect, includeClearanceOnScroll = false, except = "") => {
+export const collectFormData = (form, hasSelect, includeClearanceOnScroll = false, except = "", noScroll = false) => {
     let data = null
     let isValid = validateForm(form, hasSelect, except)
     let sumtBtn = form.querySelectorAll("input[type=submit]")
@@ -37,7 +37,7 @@ export const collectFormData = (form, hasSelect, includeClearanceOnScroll = fals
         data = Object.fromEntries(new FormData(form).entries())
         form.reset()
     }
-    else highlightField(isValid[0], sumtBtn, includeClearanceOnScroll)
+    else highlightField(isValid[0], sumtBtn, noScroll, includeClearanceOnScroll)
     return { data: data, sumtBtn: sumtBtn }
 }
 
@@ -62,12 +62,14 @@ const isPasswordField = (input) => {
 
 // Highlight Input Field
 export const C_EMPTY = "empty"
-const highlightField = (field, sumtBtn, scrollOffset) => {
+export const highlightField = (field, sumtBtn, noScroll, scrollOffset) => {
     let emptyField = field.type == "file" ? field.parentElement : field
     emptyField.classList.add(C_EMPTY)
     emptyField.focus()
-    if (scrollOffset) scrollOffset = header.scrollHeight + field.offsetHeight
-    document.documentElement.scrollTop = (field.offsetTop == 0 ? field.parentElement.offsetTop : field.offsetTop) - scrollOffset
+    if (noScroll === false) {
+        if (scrollOffset) scrollOffset = header.scrollHeight + field.offsetHeight
+        document.documentElement.scrollTop = (field.offsetTop == 0 ? field.parentElement.offsetTop : field.offsetTop) - scrollOffset
+    }
     field.oninput = () => {
         emptyField.classList.remove(C_EMPTY)
         field.oninput = null

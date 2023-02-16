@@ -1,6 +1,6 @@
 import { auth } from "./fireBase/app.js"
 import { activateHeaderAnimations, startProgress, stopProgress, C_SHOW } from "./common/utils/animations.js"
-import { noSubmit, collectFormData, showInfo } from "./common/utils/form.js"
+import { noSubmit, collectFormData, showInfo, highlightField } from "./common/utils/form.js"
 import { REDIRECT_EXCEPTIONS, getCurrentPath, assignRedirectLink, getParam } from "./common/utils/urls.js"
 import {
     form, cardsDeck, toggleEmptyDeck, viewBunkDetails, revertFormToDefault,
@@ -41,7 +41,7 @@ const searchFormSubmission = async (e) => {
     revertFormToDefault(true)
     toggleEmptyDeck()
     let { data, sumtBtn } = collectFormData(e.target, false, true, "text")
-    if (data) {
+    if (data && data.hasslots == "true" || data.searchfor != "") {
         const progRef = startProgress(data)
         await loadMoreBunk(data).then(async () => {
             stopProgress(progRef)
@@ -61,9 +61,8 @@ const searchFormSubmission = async (e) => {
             }, 1000)
         }).catch(() => showInfo("Something Went Wrong", "incomplete", progRef, sumtBtn, true))
     }
+    else highlightField(e.target.querySelector("input[name=searchfor]"), sumtBtn, true, false)
 }
 
 // Preview Bunk full details
-cardsDeck.addEventListener("click", () => {
-    viewBunkDetails()
-})
+cardsDeck.addEventListener("click", () => viewBunkDetails())
