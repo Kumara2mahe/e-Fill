@@ -93,6 +93,10 @@ function initPageFunctions() {
     const randIcon = getRandItem(footerSocialIcons)
     if (randIcon) randIcon.classList.add("highlight")
 
+    // Copyrights year
+    const year = new Date().getFullYear()
+    document.querySelector(".copyrights #year").innerHTML = year
+
     // Scroll to Top button
     window.addEventListener("scroll", toggleScrolltoTop)
     clearImageBlob()
