@@ -41,7 +41,7 @@ export const linkDeactivator = (element) => {
 }
 
 // Validate redirect Link
-export const REDIRECT_EXCEPTIONS = ["login.html", "register.html", "error.html", "manage-bunks.html", "locate-charger.html", "profile.html"]
+export const REDIRECT_EXCEPTIONS = ["login", "register", "error", "manage-bunks", "locate-charger", "profile"]
 export const getValidRedirectLink = (link = null, except = null) => {
     if (link == null) link = getCurrentPath()
     if (except && except.indexOf(link) >= 0 || REDIRECT_EXCEPTIONS.includes(link) === false) {
@@ -77,7 +77,7 @@ export const getParam = (key, onlyValue = true) => {
 }
 
 // Redirect to path with/without search queries
-export const HOME = "index.html"
+export const HOME = "/"
 export const redirect = (to, sQuery = "") => {
     if (to == null) {
         to = HOME

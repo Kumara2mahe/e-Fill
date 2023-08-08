@@ -65,7 +65,11 @@ body {
 }
 
 .intro-content .benefits {
-    grid-template-columns: 20vw 20vw;
+    grid-template-columns: 1fr 1fr;
+}
+
+.intro-content .benefits .badge {
+    min-width: 65px;
 }
 
 .intro-content .benefits:nth-of-type(even) .service:nth-of-type(even) {
@@ -116,14 +120,24 @@ body {
     }
 }
 
-@media (min-width: 992px) and (max-width: 1190px) {
-    .about-container .intro-content {
-        grid-template-columns: 0.8fr 1.2fr;
+@media (min-width: 992px) and (max-width: 1320px) {
+    .intro-content .benefits {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0;
     }
 
-    .intro-content img {
-        width: 28em;
-        height: 21em;
+    @media (max-width: 1190px) {
+        .about-container .intro-content {
+            grid-template-columns: 0.8fr 1.2fr;
+        }
+
+        .intro-content img {
+            width: 28em;
+            height: 21em;
+        }
     }
 }
 

@@ -26,7 +26,7 @@ form.querySelector(".close-btn").addEventListener("click", () => {
 export const loadMoreBunk = async (filter, uid, count, reverse) => {
     spinner.classList.add(C_SHOW)
     const loadedBunks = (filter == OWNERID) ? await getBunksByOwnerId(uid, count, reverse) : await getBunksByLocation(filter)
-    if (loadedBunks.keysOrder.length) {
+    if (loadedBunks?.keysOrder?.length) {
         const { bunks, keysOrder } = loadedBunks
         let hasDuplicate = false
         keysOrder.forEach(async (key) => {

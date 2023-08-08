@@ -66,10 +66,10 @@ const otherOption = formContainer.querySelector(".other-option")
 if (isRegister === false) {
     nameField.remove()
     typeField.remove()
-    otherOption.innerHTML = `Don't have an account?&ensp;<a class="link" href="./register.html">Register</a>`
+    otherOption.innerHTML = `Don't have an account?&ensp;<a class="link" href="/register">Register</a>`
 }
 else {
-    otherOption.innerHTML = `Already have an account?&ensp;<a class="link" href="./login.html">Login</a>`
+    otherOption.innerHTML = `Already have an account?&ensp;<a class="link" href="/login">Login</a>`
 }
 
 // Show/Hide Password

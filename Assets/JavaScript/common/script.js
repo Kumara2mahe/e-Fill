@@ -112,8 +112,8 @@ const trackAuthState = async (parent) => {
 
     // On User Login/Logout
     authStateListener(auth, (user) => {
-        btnPlaceholder.classList.toggle(C_SHOW)
         if (user) {
+            btnPlaceholder.classList.remove(C_SHOW)
             logoutBtn.classList.remove(C_HIDE)
             logoutBtn.addEventListener("click", logoutUser)
             loginBtn.remove()
@@ -121,6 +121,7 @@ const trackAuthState = async (parent) => {
             if (searchBox) searchBox.addEventListener("submit", e => searchBoxSubmit(e, false))
         }
         else {
+            btnPlaceholder.classList.remove(C_SHOW)
             loginBtn.classList.remove(C_HIDE)
             logoutBtn.remove()
             if (searchBox) searchBox.addEventListener("submit", e => searchBoxSubmit(e))
@@ -134,10 +135,10 @@ const assignAuthLinks = (userId, parent) => {
     newLink.setAttribute("tabindex", "1")
     newLink.innerHTML = `Manage&nbsp;<span class="sym">⌄</span>
                         <div class="dropdown-box">
-                            <a class="link sub-link" href="./${REDIRECT_EXCEPTIONS[4]}" tabindex="1">Locate Charger</a>
-                            <a class="link sub-link" href="./${REDIRECT_EXCEPTIONS[4]}?hasslots=true" tabindex="1">Slots Availability</a>
+                            <a class="link sub-link" href="/${REDIRECT_EXCEPTIONS[4]}" tabindex="1">Locate Charger</a>
+                            <a class="link sub-link" href="/${REDIRECT_EXCEPTIONS[4]}?hasslots=true" tabindex="1">Slots Availability</a>
                             <hr class="separator">
-                            <a class="link sub-link" href="./profile.html" tabindex="1">Profile</a>
+                            <a class="link sub-link" href="/profile" tabindex="1">Profile</a>
                         </div>`
     newLink.addEventListener("mouseenter", dropdownShow)
 
