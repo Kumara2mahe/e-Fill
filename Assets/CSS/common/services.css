@@ -157,55 +157,48 @@
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-.preview-thumb .play-area::before,
-.preview-thumb .play-area::after {
-    content: "";
-    width: 1px;
-    height: 1px;
-    border-radius: 100%;
-    position: absolute;
-}
-
-.preview-thumb .play-area::before,
-.preview-thumb .play-area::after,
-.preview-thumb .play-area .play-btn {
-    animation: ripple-effect 3s infinite;
-    animation-delay: 0.9s;
-}
-
-.preview-thumb .play-area::before {
-    animation-delay: 0.6s;
-}
-
-.preview-thumb .play-area::after {
-    animation-delay: 0.4s;
-}
-
 .preview-thumb .play-area .play-btn {
     background-color: var(--white);
     width: 4em;
     height: 4em;
     border-radius: 50%;
     transition: background-color 0.25s ease-in-out;
+    animation: ripple-effect 3s infinite;
+    animation-delay: 0.9s;
     cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.preview-thumb .play-area .play-btn::before,
+.preview-thumb .play-area .play-btn::after {
+    content: "";
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    animation: half-ripple-effect 3s infinite;
+    position: absolute;
+    z-index: -1;
 }
 
 .preview-thumb .play-area .play-btn::before {
-    content: "";
-    border: solid transparent;
-    border-width: 10px 0 10px 20px;
-    border-left-color: var(--darkjunglegreen);
-    transition: border-left-color 0.25s ease-in-out;
-    position: relative;
-    left: 2px;
+    animation-delay: 0.6s;
+}
+
+.preview-thumb .play-area .play-btn::after {
+    animation-delay: 0.4s;
 }
 
 .preview-thumb .play-area .play-btn:hover {
     background-color: var(--mantis);
 }
 
-.preview-thumb .play-area .play-btn:hover::before {
-    border-left-color: var(--white);
+.preview-thumb .play-area .play-btn svg {
+    transition: fill 0.25s ease-in-out;
+}
+
+.preview-thumb .play-area .play-btn:hover svg {
+    fill: var(--white);
 }
 
 /* ---------------- Benefits (Badge) | Styles ------------------- */
@@ -231,7 +224,6 @@
     box-shadow: 0 0 1em rgba(191, 191, 191, 0.2);
     border-radius: 0.75em;
 }
-
 
 /* ------------------- Additional-Info Container | Styles -------------------
 ----------------------------------------------------------------------- */
