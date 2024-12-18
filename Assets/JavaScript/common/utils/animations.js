@@ -158,7 +158,7 @@ export const toggleScrolltoTop = () => {
         scrollTopBtn = document.createElement("a")
         scrollTopBtn.classList.add("scroll-to-top")
         scrollTopBtn.setAttribute("tabindex", "1")
-        scrollTopBtn.innerHTML = `&#11165;`
+        scrollTopBtn.innerHTML = `<img src="https://cdn-icons-png.flaticon.com/128/44/44607.png" alt="" />`
         scrollTopBtn.style.cursor = "pointer"
         scrollTopBtn.addEventListener("click", () => {
             document.documentElement.scrollTop = 0

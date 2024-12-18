@@ -846,8 +846,13 @@ footer .related-links a.address {
 
 .scroll-to-top {
     font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: rgba(120, 202, 91, 0.6);
     color: var(--darkjunglegreen);
+    width: 50px;
+    height: 50px;
     padding: 0.5rem 1rem;
     border-radius: 2.5rem;
     z-index: 8;
@@ -857,12 +862,16 @@ footer .related-links a.address {
     right: 2.5%;
 }
 
-.scroll-to-top:hover {
+.scroll-to-top:hover,
+.scroll-to-top:active {
     background-color: var(--mantis);
 }
 
-.scroll-to-top:active {
-    color: var(--orangeweb);
+.scroll-to-top>img {
+    width: 16px;
+    height: 16px;
+    transform: rotate(90deg);
+    position: absolute;
 }
 
 /* --------------------- Media (Player) | Styles ---------------------- */
