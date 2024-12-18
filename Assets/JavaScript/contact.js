@@ -19,7 +19,7 @@ window.addEventListener("DOMContentLoaded", pageAnimator)
 window.addEventListener("scroll", pageAnimator)
 
 // Form Submission
-contactForm.addEventListener("submit", (e) => {
+contactForm.addEventListener("submit", async (e) => {
     e.preventDefault()
     let { data, sumtBtn } = collectFormData(e.target, false, false, "tel", true)
     if (data) {
@@ -27,9 +27,21 @@ contactForm.addEventListener("submit", (e) => {
             return highlightField(e.target.querySelector("textarea.c-message"), sumtBtn, true, false)
         }
         const progRef = startProgress(data)
-        setTimeout(() => {
-            showInfo("We got your message!", "complete", progRef, sumtBtn, true)
-        }, 2000)
+        const reqData = {
+            fromApp: `e-Fill's Contact Form`,
+            appLink: window.location.origin,
+            email: data.cemail,
+            name: data.cname,
+            companyName: data.cnumber,
+            message: data.cmessage
+        }
+        $.ajax({
+            type: "POST",
+            url: "https://contact-messenger.vercel.app/message/send",
+            data: reqData,
+            success: () => showInfo("We got your message!", "complete", progRef, sumtBtn, true),
+            error: () => showInfo("Something Went Wrong", "incomplete", progRef, sumtBtn, true)
+        })
     }
 })
 
