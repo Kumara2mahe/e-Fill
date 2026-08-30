@@ -33,7 +33,16 @@ export const loadMoreBunk = async (filter, uid, count, reverse) => {
             if (bunksLoaded.indexOf(key) < 0) {
                 let bunkData = bunks[key]
                 bunkData.id = key
-                bunkData.imageUrl = await getImgUrl(bunkData.imageUrl)
+
+                // Try fetching storage image; fallback to local asset if quota/access fails
+                try {
+                    bunkData.imageUrl = await getImgUrl(bunkData.imageUrl)
+                } catch (imgError) {
+                    console.warn(`Failed to resolve image for ${key}, using fallback.`)
+                    bunkData.imageUrl = "/Assets/Images/thumbs/16.webp"
+                }
+
+                // bunkData.imageUrl = await getImgUrl(bunkData.imageUrl)
                 await createBunkCard(bunkData, cardsDeck)
                 spinner.classList.remove(C_SHOW)
                 toggleEmptyDeck(count || keysOrder.length)
