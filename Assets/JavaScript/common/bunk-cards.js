@@ -1,5 +1,5 @@
 import { OWNERID, getBunksByLocation, getBunksByOwnerId, collectBunkData } from "../fireBase/bunks.js"
-import { getImgUrl } from "../fireBase/images.js"
+import { getImgUrl, FALLBACK_IMAGE } from "../fireBase/images.v2.js"
 import { createBunkCard, C_HIDE, C_SHOW, C_PREVIEW, highLightBunkCard, openFilePicker } from "./utils/animations.js"
 import { switchFormState } from "./utils/form.js"
 
@@ -39,7 +39,7 @@ export const loadMoreBunk = async (filter, uid, count, reverse) => {
                     bunkData.imageUrl = await getImgUrl(bunkData.imageUrl)
                 } catch (imgError) {
                     console.warn(`Failed to resolve image for ${key}, using fallback.`)
-                    bunkData.imageUrl = "/Assets/Images/thumbs/16.webp"
+                    bunkData.imageUrl = FALLBACK_IMAGE
                 }
 
                 // bunkData.imageUrl = await getImgUrl(bunkData.imageUrl)

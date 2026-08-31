@@ -4,7 +4,7 @@ import {
     query, orderByChild,
     equalTo, limitToFirst, limitToLast
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
-import { uploadImage, deleteImage } from "./images.js"
+import { uploadImage, deleteImage } from "./images.v2.js"
 import { sortbyDateTime, sortbyInteger } from "../common/utils/basic.js"
 
 
@@ -25,7 +25,8 @@ export const addUpdateBunk = async (uid, data, create) => {
         }
         else {
             update(newBunkRef, data)
-            return await getBunkData(newBunkRef)
+            let _n = await getBunkData(newBunkRef)
+            return _n
         }
     }
     catch (error) {

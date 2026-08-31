@@ -21,6 +21,7 @@
 * HTML
 * CSS
 * JQuery
+* Cloudinary
 <br>
 
 ## Getting Started

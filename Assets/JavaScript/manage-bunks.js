@@ -15,7 +15,7 @@ import {
     trackLoadedBunks, loadMoreBunk, getBgImage,
     showMoreBtn, spinner, emptyInfo
 } from "./common/bunk-cards.js"
-import { getImgUrl } from "./fireBase/images.js"
+import { getImgUrl } from "./fireBase/images.v2.js"
 
 
 // Active Header Animations
